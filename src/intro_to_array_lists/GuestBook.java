@@ -1,80 +1,80 @@
 package intro_to_array_lists;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class GuestBook {
+public class GuestBook implements ActionListener {
 	JFrame f = new JFrame();
 	JPanel p = new JPanel();
-	JButton bAdd = new JButton ();
-	JButton bView = new JButton ();
-	int b = -1;
-	static String[]names= new String[10];
-	
+	JButton bAdd = new JButton("add");
+	JButton bView = new JButton("view");
+
+	static ArrayList<String> names = new ArrayList<String>();
+
 	public static void main(String[] args) {
-		names [0] = "Bob Banders";
-		names [1] = "Sandy Summers";
-		names [2] = "Greg Ganders";
-		names [3] = "Donny Doners";
-	
+		names.add("Bob Banders");
+		names.add("Sandy Summers");
+		names.add("Greg Ganders");
+		names.add("Donny Doners");
+		new GuestBook().otherNeededStuff();
 	}
-	String addName () {
+
+	void otherNeededStuff() {
+		f.setVisible(true);
+		f.add(p);
+		// p.add(f);
+		// bAdd.add(p);
+		p.add(bAdd);
+
+		// bView.add(p);
+		p.add(bView);
+
+		bAdd.addActionListener(this);
+		bView.addActionListener(this);
+	}
+
+	String addName() {
 		String Ack = JOptionPane.showInputDialog("add naem");
-		
+
 		return Ack;
 	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+
+		
 	
-	void viewAll () {
-		if(!names     																		 [0].equals(null)) {
-			b++;
-			if(!names     																		 [1].equals(null)) {
-				b++;
-				if(!names     																		 [2].equals(null)) {
-					b++;
-					if(!names     																		 [3].equals(null)) {
-						b++;
-						if(!names     																		 [4].equals(null)) {
-							b++;
-							if(!names     																		 [5].equals(null)) {
-								b++;
-								if(!names     																		 [6].equals(null)) {
-									b++;	
-									if(!names     																		 [7].equals(null)) {
-										b++;
-										if(!names     																		 [8].equals(null)) {
-											b++;
-											if(!names     																		 [9].equals(null)) {
-												b++;
-												if(!names     																		 [10].equals(null)) {
-													
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
+		if (e.getSource().equals(bView)) {
+			for(String s : names){
+				System.out.println(s);
 			}
 		}
-		
-		for (int i = 0; i <= b; i++) {
-			System.out.println(names [i]);
-		}
-		
-				
+		if (e.getSource().equals(bAdd)) {
+			names.add(addName());
+
 	}
-	
-	// Create a GUI with two buttons. One button reads "Add Name" and the other button reads "View Names".
-	
-	// When the add name button is clicked, display an input dialog that asks the user to enter a name. Add
-	// that name to an ArrayList. When the "View Names" button is clicked, display a message dialog that displays
+		}
+
+	// Create a GUI with two buttons. One button reads "Add Name" and the other
+	// button reads "View Names".
+
+	// When the add name button is clicked, display an input dialog that asks the
+	// user to enter a name. Add
+	// that name to an ArrayList. When the "View Names" button is clicked, display a
+	// message dialog that displays
 	// all the names added to the list. Format the list as follows:
 	// Guest #1: Bob Banders
 	// Guest #2: Sandy Summers
 	// Guest #3: Greg Ganders
 	// Guest #4: Donny Doners
 }
+
